@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\http\Controller\backendController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/logout', [backendController::class, 'logout'])->name('logout');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('admin.index');
     })->name('dashboard');
 });
