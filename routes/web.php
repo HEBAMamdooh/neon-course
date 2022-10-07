@@ -1,14 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\http\Controller\backendController;
+use App\Http\Controllers\backendController;
 use App\Models\User;
+// use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
   return view('welcome');
 });
 
-Route::get('/logout', [backendController::class, 'logout'])->name('logout');
+Route::get('/logout', [BackendController::class, 'logout'])->name('logout');
 
 Route::middleware([
   'auth:sanctum',
@@ -21,6 +23,9 @@ Route::middleware([
 
   Route::get('/users', function () {
     $users = User::all();
-    return view('admin.users');
-  })->name('users');
+    // $users = DB::table('users')->get();
+    return view('admin.users' , compact('users'));
+  })->name("users");
 });
+
+Route::get('/categories' , [CategoryController::class , 'index'])->name('categories');

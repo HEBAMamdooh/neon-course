@@ -1,7 +1,6 @@
 @extends ('admin.admin-app');
 @section('content')
-<h2> Welcome : {{ Auth::user()->name }}</h2>
-<span> the user number {{ Auth::user()->id }} of </span>
+<span> your user number {{ Auth::user()->id }} of {{ count($users) }} users</span>
 <hr>
 <table class="table card-table table-responsive table-responsive-large" style="width:100%">
   <thead>
